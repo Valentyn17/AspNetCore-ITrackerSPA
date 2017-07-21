@@ -1,0 +1,90 @@
+<h1>Issues <span class="label-small"> {{ sharedService.getCurrentProject()?.name || 'All' }} </span></h1>
+
+<div class="header-actions">
+    <div class="col-md-3">
+        <input type="text" [(ngModel)]='listFilter' class="form-control" placeholder="Search for issue...">
+    </div>
+    <div class="col-md-7">
+        <ul class='nav navbar-nav issues-header-actions'>
+            <li>
+                <select [(ngModel)]='filter1' data-title="Type" data-selected-text-format="static" id="bs-type" class="selectpicker" data-width="100%" data-style="someClass2">
+                    <option value='0'>Bug</option>
+                    <option value='1'>Task</option>
+                    <option value='2'>Change</option>
+                    <option value='3'>Enhancement</option>
+                    <option data-divider="true"></option>
+                    <option value='-1'>All</option>
+
+                </select>
+            </li>
+            <li>
+                <select [(ngModel)]='filter2' data-title="Priority" data-selected-text-format="static" id="bs-priority" class="selectpicker" data-width="100%" data-style="someClass2">
+                    <option value='0'>Low</option>
+                    <option value='1'>Normal</option>
+                    <option value='2'>High</option>
+                    <option data-divider="true"></option>
+                    <option value='-1'>All</option>
+
+                </select>
+            </li>
+            <li>
+                <select [(ngModel)]='filter3' data-title="Status" data-selected-text-format="static" id="bs-status" class="selectpicker" data-width="100%" data-style="someClass2">
+                    <option value='0'>Open</option>
+                    <option value='1'>InProgress</option>
+                    <option value='2'>Resolved</option>
+                    <option value='3'>Reopened</option>
+                    <option value='4'>Closed</option>
+                    <option data-divider="true"></option>
+                    <option value='-1'>All</option>
+
+                </select>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-2 text-right">
+        <a [routerLink]="['/issues', 'create']" class="btn btn-primary"><span class="glyphicon glyphicon-plus small"></span> New Issue</a>
+    </div>
+</div>
+
+<div *ngIf="!issues || issues.length == 0">No issues found.</div>
+
+<table class='table table-striped' *ngIf='issues && issues.length > 0'>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Creator</th>
+            <th>Date</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let issue of issues | issuesFilter:listFilter | typeFilter:filter1 | priorityFilter:filter2 | statusFilter:filter3'>
+            <td>{{ issue.issueId }}</td>
+            <td>
+                <a [routerLink]="['/issues', issue.issueId, 'edit']">{{issue.title}}</a>
+            </td>
+            <td>{{ issue.creator }}</td>
+            <td>{{ issue.createdAt | date:'yyyy-MM-dd HH:mm a'}}</td>
+            <td>
+                <span class="priority" [ngClass]="priorityToClass(issue.priority)"></span>
+                {{ priorityToText(issue.priority) }}
+            </td>
+            <td>
+                <span [ngClass]="statusTypeToClass(issue.statusType)">
+                    {{ statusTypeToText(issue.statusType) }}
+                </span>
+            </td>
+            <td>
+                <a title="Issues" [routerLink]="['/issues', issue.issueId, 'attachments']">
+                    <span class="glyphicon glyphicon-paperclip action-button"></span>
+                </a>
+                <a (click)="deleteIssue(issue)" role="button">
+                    <span class="glyphicon glyphicon-remove btn-remove"></span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

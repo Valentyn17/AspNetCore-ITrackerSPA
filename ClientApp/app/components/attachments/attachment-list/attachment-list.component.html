@@ -1,0 +1,36 @@
+<h1>Attachments</h1>
+
+<div *ngIf="errorMessage" class="alert alert-danger"><b>Error:</b> {{ errorMessage }} </div>
+
+<div class="header-actions">
+    <input type="text" [(ngModel)]='listFilter' class="form-control" placeholder="Search for attachment...">
+</div>
+
+<div *ngIf="!attachments || attachments.length == 0">No attachments found.</div>
+
+<table class='table table-striped' *ngIf='attachments && attachments.length'>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>File Type</th>
+            <th>Upload Date</th>
+            <th width="150">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let attachment of attachments | attachmentFilter:listFilter'>
+            <td>{{ attachment.attachmentId }}</td>
+            <td>{{ attachment.name }}</td>
+            <td>{{ attachment.fileType || "Unknown" }}</td>
+            <td>{{ attachment.createdAt | date:'yyyy-MM-dd HH:mm a' || "No Date" }}</td>
+            <td>
+                <!-- Open Images/Documents in browser (no need to download)  -->
+                <a target="_blank" href="../{{ attachment.path }}" role="button"><span class="glyphicon glyphicon-download-alt"></span></a>
+                <a (click)="deleteAttachment(attachment)" role="button">
+                    <span class="glyphicon glyphicon-remove btn-remove"></span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

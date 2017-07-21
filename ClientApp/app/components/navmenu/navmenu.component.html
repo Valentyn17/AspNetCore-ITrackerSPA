@@ -1,0 +1,61 @@
+<div class='main-nav'>
+    <div class='navbar navbar-inverse'>
+        <div class='navbar-header'>
+            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                <span class='sr-only'>Toggle navigation</span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+            </button>
+            <a class='navbar-brand' [routerLink]="['/home']"><span class='glyphicon glyphicon-equalizer'></span> ITracker</a>
+        </div>
+        <div class='clearfix'></div>
+        <div class='navbar-collapse collapse' *ngIf="auth.authenticated()">
+            <ul class='nav navbar-nav'>
+                <li>
+                     <select (change)="navigateTo($event.target.value)" id="bs-current-project" class="selectpicker" data-live-search="true" data-width="100%" data-style="someClass">
+                        <option value="-1">All</option>
+                        <option data-divider="true"></option>
+                        <option value='{{ project.projectId }}' *ngFor="let project of projects">{{project?.name}}</option>
+                    </select> 
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/home']">
+                        <span class='glyphicon glyphicon-home'></span> Home
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{exact:true}">
+                    <a [routerLink]="['/projects']">
+                        <span class='glyphicon glyphicon-th-list'></span> Projects
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']"  [routerLinkActiveOptions]="{exact:false}">
+                    <a *ngIf="sharedService.getCurrentProject()" [routerLink]="['/projects', sharedService.getCurrentProject()?.projectId, 'issues']">
+                        <span class='glyphicon glyphicon-edit'></span> Issues
+                    </a>
+                    <a *ngIf="!sharedService.getCurrentProject()" [routerLink]="['/issues']">
+                        <span class='glyphicon glyphicon-edit'></span> Issues
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/attachments']">
+                        <span class='glyphicon glyphicon-paperclip'></span> Attachments
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-footer navbar-collapse collapse">
+            <ul class='nav navbar-nav'>
+            <li *ngIf="!auth.authenticated()">
+                <a (click)="auth.login()" class="btn btn-custom" role="button">Login</a>
+            </li>
+            <li *ngIf="auth.authenticated()">
+                <div class="btn-group btn-group-justified" role="group">
+                    <a [routerLink]="['/profile']" class="btn btn-custom border-right" role="button">Profile</a>
+                    <a (click)="auth.logout()" class="btn btn-custom" role="button">Sign out</a>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </div>
+</div>

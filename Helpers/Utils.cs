@@ -7,8 +7,6 @@ namespace ITrackerSPA.Controllers
 {
     public class Utils
     {
-        
-
         public static FileType GetFileType(IFormFile file)
         {
             string[] images = { "png", "jpg", "jpeg" };

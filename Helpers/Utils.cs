@@ -9,9 +9,9 @@ namespace ITrackerSPA.Controllers
     {
         public static FileType GetFileType(IFormFile file)
         {
-            string[] images = { "png", "jpg", "jpeg" };
+            string[] allowedExtensions = { "png", "jpg", "jpeg" };
             var fileExtension = Path.GetExtension(file.FileName);
-            if (images.Any(e => fileExtension.Contains(e)))
+            if (allowedExtensions.Any(e => fileExtension.Contains(e)))
                 return FileType.Image;
 
             // Anyway...
@@ -27,7 +27,7 @@ namespace ITrackerSPA.Controllers
             if (file == null || file.Length == 0)
                 return false;
 
-            // Maximum file size: 500kb
+            // Maximum file size allowed: 500kb
             if (file.Length >  512000)
                 return false;
             

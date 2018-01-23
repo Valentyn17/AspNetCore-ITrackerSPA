@@ -61,6 +61,7 @@ namespace ITrackerSPA.Controllers
 
             try
             {
+                // Create new issue
                 var newIssue = new Issue()
                 {
                     Title = issue.Title,

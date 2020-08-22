@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITrackerSPA", "ITrackerSPA.csproj", "{49DB5E2A-C070-4830-94D4-802487CFAD91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITrackerSPA", "ITrackerSPA\ITrackerSPA.csproj", "{3FC871CB-DD43-498B-87BF-3296C091EBD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{49DB5E2A-C070-4830-94D4-802487CFAD91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49DB5E2A-C070-4830-94D4-802487CFAD91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49DB5E2A-C070-4830-94D4-802487CFAD91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49DB5E2A-C070-4830-94D4-802487CFAD91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FC871CB-DD43-498B-87BF-3296C091EBD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC871CB-DD43-498B-87BF-3296C091EBD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC871CB-DD43-498B-87BF-3296C091EBD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FC871CB-DD43-498B-87BF-3296C091EBD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BCC85D01-0789-48DA-9126-F1C72FD7A9F5}
 	EndGlobalSection
 EndGlobal

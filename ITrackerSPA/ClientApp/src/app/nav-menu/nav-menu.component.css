@@ -1,0 +1,67 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+  height: 100vh;
+  background: #222D32;
+  color: #aaa;
+  overflow-y: hidden;
+}
+
+.main-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: stretch;
+    padding: 0;
+}
+
+ul.navbar-nav {
+    width: 100%;
+    height: 100%;
+}
+
+ul.navbar-nav li {
+    margin-bottom: 7px;
+}
+
+.navbar-brand {
+  white-space: normal;
+  word-break: break-all;
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+  background: #2f7aa1;
+  color: white;
+}
+
+a.nav-link {
+    color: #aaa;
+    padding: 8px 20px !important;
+}
+
+li.link-active a,
+li.link-active a:hover,
+li.link-active a:focus {
+  background-color: #2e383d;
+  color: white;
+}
+
+.nav-link i {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.current-project select {
+    width: 100%;
+    background: #f0ad4e;
+    color: white;
+    border: none;
+    border-radius: 0;
+}

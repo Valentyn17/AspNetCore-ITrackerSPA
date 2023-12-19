@@ -1,7 +1,7 @@
 <div *ngIf="!projects">There are no projects to assign a new issue...</div>
 
 <div *ngIf="issue && projects" class="d-flex justify-content-center">
-  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">Error: {{ errorMessage }}</div>
+  <!--<div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>-->
   <div class="col-8 p-3" style="background:#eee;">
     <h4>Create Issue</h4>
     <form #form="ngForm" (submit)="onSubmit(form)" class="row g-2 mt-2" novalidate>
@@ -10,8 +10,10 @@
         <select name="project" class="form-select" data-width="100%" required ngModel
                 [(ngModel)]="issue.issueId"
                 (ngModelChange)="issue.issueId=$event">
+          <option [ngValue]="-1" disabled selected>Select a project</option>
           <option [ngValue]='project.projectId' *ngFor="let project of projects">{{ project.name }}</option>
         </select>
+        <label *ngIf="errorMessage" style="color: red;">&nbsp;{{ errorMessage }}</label>
       </div>
       <div class="col-12">
         <label>Title</label>

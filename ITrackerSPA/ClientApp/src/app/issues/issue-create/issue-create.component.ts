@@ -39,6 +39,10 @@ export class IssueCreateComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     // Any file to upload?
+    if (this.issue.issueId === -1) {
+      this.errorMessage = "Please select a project";
+      return;
+    }
     this.issueService.createIssue(this.issue).subscribe(result => {
       if (result.issueId > -1) {
         this.uploadFile(result.issueId);
